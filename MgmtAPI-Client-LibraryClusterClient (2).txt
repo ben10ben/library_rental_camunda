@@ -1,6 +1,6 @@
 export ZEEBE_ADDRESS='c8192281-1489-423b-8f9e-bd82cfd54dbb.dsm-1.zeebe.camunda.io:443'
 export ZEEBE_CLIENT_ID='rBNAuQ9b9w3_wQYrNn.nHp6kC762XRGB'
-export ZEEBE_CLIENT_SECRET='C7QWOBgT_R5Hbs4RrA1vLnxJrmG6QxghzxlHG3S5FtdKEBRiGicUDmkvRsZj0p0V'
+export ZEEBE_CLIENT_SECRET=
 export ZEEBE_AUTHORIZATION_SERVER_URL='https://login.cloud.camunda.io/oauth/token'
 export ZEEBE_TOKEN_AUDIENCE='zeebe.camunda.io'
 export CAMUNDA_CLUSTER_ID='c8192281-1489-423b-8f9e-bd82cfd54dbb'
