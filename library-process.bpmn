@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="b82f70e" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.1.0" camunda:diagramRelationId="7fcf6b94-f9ee-4f49-bd90-f724d729b6bd">
+  <bpmn:collaboration id="Collaboration_CustomerArrives">
+    <bpmn:participant id="Participant_Library" name="Library" processRef="Process_CustomerArrives" />
+    <bpmn:participant id="Participant_Customer" name="Customer" />
+    <bpmn:messageFlow id="Flow_0ds1ljh" sourceRef="Participant_Customer" targetRef="StartEvent_CustomerArrived" />
+    <bpmn:messageFlow id="Flow_163jyq4" sourceRef="Event_LimitReachedNotification" targetRef="Participant_Customer" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_CustomerArrives" name="Customer Arrives" isExecutable="true">
+    <bpmn:extensionElements>
+      <zeebe:userTaskForm id="userTaskForm_3pp7o8r">{
+  "components": [
+    {
+      "label": "Customer has signed created library card",
+      "type": "checkbox",
+      "id": "Field_0vbzgxw",
+      "key": "hasSigned",
+      "defaultValue": true,
+      "disabled": true
+    }
+  ],
+  "schemaVersion": 5,
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "6f76121"
+  },
+  "type": "default",
+  "id": "Form_75ecac7d-55f6-4674-8b71-7ce93c2a415c",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.1.0"
+}</zeebe:userTaskForm>
+      <zeebe:userTaskForm id="userTaskForm_0fpf8mb">{
+  "components": [
+    {
+      "label": "Last Name",
+      "type": "textfield",
+      "id": "Field_03qxsbw",
+      "key": "lastName",
+      "validate": {
+        "required": true,
+        "pattern": "\\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+",
+        "maxLength": 30,
+        "minLength": 2
+      }
+    },
+    {
+      "label": "First Name",
+      "type": "textfield",
+      "id": "Field_1xxstr2",
+      "key": "firstName",
+      "validate": {
+        "pattern": "\\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+",
+        "maxLength": 30,
+        "minLength": 2
+      }
+    }
+  ],
+  "schemaVersion": 5,
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "6f76121"
+  },
+  "type": "default",
+  "id": "Form_c5ff00b0-9cc7-43f3-b59f-3e636af95f94",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.1.0"
+}</zeebe:userTaskForm>
+      <zeebe:userTaskForm id="userTaskForm_1pmn6u4">{
+  "components": [
+    {
+      "label": "Last Name",
+      "type": "textfield",
+      "id": "Field_0baznq2",
+      "key": "lastName",
+      "validate": {
+        "required": true,
+        "minLength": 2,
+        "maxLength": 30,
+        "pattern": "\\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+"
+      }
+    },
+    {
+      "label": "First Name",
+      "type": "textfield",
+      "id": "Field_1dm88fq",
+      "key": "firstName",
+      "validate": {
+        "required": true,
+        "minLength": 2,
+        "maxLength": 30,
+        "pattern": "\\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+"
+      }
+    },
+    {
+      "values": [
+        {
+          "label": "female",
+          "value": "female"
+        },
+        {
+          "label": "male",
+          "value": "male"
+        },
+        {
+          "label": "other",
+          "value": "other"
+        }
+      ],
+      "label": "Gender",
+      "type": "radio",
+      "id": "Field_0uuem4u",
+      "key": "gender"
+    },
+    {
+      "label": "Email",
+      "type": "textfield",
+      "id": "Field_11miaed",
+      "key": "email",
+      "validate": {
+        "pattern": ".+\\@.+\\..+",
+        "maxLength": 30,
+        "minLength": 10,
+        "required": true
+      }
+    }
+  ],
+  "schemaVersion": 5,
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "6f76121"
+  },
+  "type": "default",
+  "id": "Form_RegisterCustomer",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.1.0"
+}</zeebe:userTaskForm>
+      <zeebe:userTaskForm id="userTaskForm_13dfhta">{
+  "components": [
+    {
+      "label": "Card received",
+      "type": "checkbox",
+      "id": "Field_174lwb9",
+      "key": "cardReceived",
+      "defaultValue": true,
+      "disabled": true
+    },
+    {
+      "label": "CustomerID",
+      "type": "number",
+      "id": "Field_0pu3zep",
+      "key": "customerID",
+      "description": "Enter the number printed on the card",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "schemaVersion": 5,
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "6f76121"
+  },
+  "type": "default",
+  "id": "Form_GetCardFromCustomer",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.1.0"
+}</zeebe:userTaskForm>
+      <zeebe:userTaskForm id="userTaskForm_17p3a6h">{
+  "components": [
+    {
+      "label": "Customer presents library card",
+      "type": "checkbox",
+      "id": "Field_0fiocp0",
+      "key": "hasCard"
+    },
+    {
+      "label": "Customer ID",
+      "type": "textfield",
+      "id": "Field_0qf5z8d",
+      "key": "customerID",
+      "description": "Enter the number printed on the card (if available)",
+      "validate": {
+        "required": false
+      }
+    },
+    {
+      "label": "Customer is already registered in database",
+      "type": "checkbox",
+      "id": "Field_1at5nms",
+      "key": "isRegistered",
+      "defaultValue": true
+    }
+  ],
+  "schemaVersion": 5,
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "6f76121"
+  },
+  "type": "default",
+  "id": "Form_CheckCustomer",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.1.0"
+}</zeebe:userTaskForm>
+      <zeebe:userTaskForm id="userTaskForm_08f4u93">{
+  "components": [
+    {
+      "label": "Book ID",
+      "type": "textfield",
+      "id": "Field_0lk5xvj",
+      "key": "bookID",
+      "validate": {
+        "required": true,
+        "minLength": 1
+      }
+    },
+    {
+      "label": "Has more books?",
+      "type": "checkbox",
+      "id": "Field_1y2ieyp",
+      "key": "hasMore"
+    }
+  ],
+  "schemaVersion": 5,
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "8a2ba7e"
+  },
+  "type": "default",
+  "id": "Form_cce0dc50-ece9-410d-911b-338c5e33c4ab",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.1.0"
+}</zeebe:userTaskForm>
+    </bpmn:extensionElements>
+    <bpmn:exclusiveGateway id="Gateway_XOR_Split_Library_Card">
+      <bpmn:incoming>Flow_0zxugwv</bpmn:incoming>
+      <bpmn:outgoing>Flow_0q3t9of</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1lw0xrg</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1i6mf56</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Activity_CheckForLibraryCard" name="Scan library card">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_17p3a6h" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0kzubi6</bpmn:incoming>
+      <bpmn:outgoing>Flow_0zxugwv</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_XOR_Join_Library_Card">
+      <bpmn:incoming>Flow_17qt0q0</bpmn:incoming>
+      <bpmn:incoming>Flow_1gigmex</bpmn:incoming>
+      <bpmn:incoming>Flow_1layvo0</bpmn:incoming>
+      <bpmn:outgoing>Flow_0il6ip7</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:subProcess id="Activity_RegisterCustomer" name="Register customer">
+      <bpmn:incoming>Flow_1lw0xrg</bpmn:incoming>
+      <bpmn:outgoing>Flow_17qt0q0</bpmn:outgoing>
+      <bpmn:startEvent id="StartEvent_RegisteringRequested" name="Registering requested">
+        <bpmn:outgoing>Flow_0pvwsjs</bpmn:outgoing>
+      </bpmn:startEvent>
+      <bpmn:sequenceFlow id="Flow_0pvwsjs" sourceRef="StartEvent_RegisteringRequested" targetRef="Activity_12xp1d9" />
+      <bpmn:sequenceFlow id="Flow_0fpcrlk" sourceRef="Activity_12xp1d9" targetRef="Activity_CreateLibraryCard" />
+      <bpmn:sequenceFlow id="Flow_1eraeym" sourceRef="Activity_CreateLibraryCard" targetRef="Activity_RequestToSignCard" />
+      <bpmn:serviceTask id="Activity_CreateLibraryCard" name="Create library card">
+        <bpmn:extensionElements>
+          <zeebe:taskDefinition type="saveNewCustomer" />
+          <zeebe:taskHeaders>
+            <zeebe:header key="firstName" value="firstName" />
+            <zeebe:header key="lastName" value="lastName" />
+            <zeebe:header key="gender" value="gender" />
+            <zeebe:header key="email" value="email" />
+          </zeebe:taskHeaders>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0fpcrlk</bpmn:incoming>
+        <bpmn:outgoing>Flow_1eraeym</bpmn:outgoing>
+      </bpmn:serviceTask>
+      <bpmn:userTask id="Activity_RequestToSignCard" name="Request to sign card">
+        <bpmn:extensionElements>
+          <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_3pp7o8r" />
+          <zeebe:ioMapping>
+            <zeebe:output source="=true" target="hasCard" />
+          </zeebe:ioMapping>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_1eraeym</bpmn:incoming>
+        <bpmn:outgoing>Flow_0cs8lky</bpmn:outgoing>
+      </bpmn:userTask>
+      <bpmn:userTask id="Activity_12xp1d9" name="Register personal data">
+        <bpmn:extensionElements>
+          <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_1pmn6u4" />
+          <zeebe:ioMapping>
+            <zeebe:output source="=true" target="isRegistered" />
+            <zeebe:output source="=lastName" target="lastName" />
+            <zeebe:output source="=firstName" target="firstName" />
+            <zeebe:output source="=email" target="email" />
+            <zeebe:output source="=gender" target="gender" />
+          </zeebe:ioMapping>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0pvwsjs</bpmn:incoming>
+        <bpmn:outgoing>Flow_0fpcrlk</bpmn:outgoing>
+      </bpmn:userTask>
+      <bpmn:endEvent id="EndEvent_CustomerRegistered" name="Customer registered">
+        <bpmn:extensionElements>
+          <zeebe:ioMapping>
+            <zeebe:output source="=customerID" target="customerID" />
+          </zeebe:ioMapping>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0cs8lky</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_0cs8lky" sourceRef="Activity_RequestToSignCard" targetRef="EndEvent_CustomerRegistered" />
+    </bpmn:subProcess>
+    <bpmn:subProcess id="Activity_SearchForCustomerByName" name="Search for customer by name">
+      <bpmn:incoming>Flow_0q3t9of</bpmn:incoming>
+      <bpmn:outgoing>Flow_1layvo0</bpmn:outgoing>
+      <bpmn:startEvent id="StartEvent_ManualSearchRequested" name="Manual search requested">
+        <bpmn:outgoing>Flow_0one6wi</bpmn:outgoing>
+      </bpmn:startEvent>
+      <bpmn:sequenceFlow id="Flow_0one6wi" sourceRef="StartEvent_ManualSearchRequested" targetRef="Activity_AskForCustomersName" />
+      <bpmn:sequenceFlow id="Flow_0xya1yz" sourceRef="Activity_AskForCustomersName" targetRef="Activity_SearchInDatabase" />
+      <bpmn:endEvent id="EndEvent_CustomerDataReceived" name="Customer data received">
+        <bpmn:extensionElements>
+          <zeebe:ioMapping>
+            <zeebe:output source="=customerID" target="customerID" />
+          </zeebe:ioMapping>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0lc6wff</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_0lc6wff" sourceRef="Activity_SearchInDatabase" targetRef="EndEvent_CustomerDataReceived" />
+      <bpmn:scriptTask id="Activity_SearchInDatabase" name="Search in database">
+        <bpmn:extensionElements>
+          <zeebe:taskDefinition type="getCustomerByName" />
+          <zeebe:taskHeaders>
+            <zeebe:header key="lastName" value="lastName" />
+            <zeebe:header key="firstName" value="firstName" />
+          </zeebe:taskHeaders>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0xya1yz</bpmn:incoming>
+        <bpmn:outgoing>Flow_0lc6wff</bpmn:outgoing>
+      </bpmn:scriptTask>
+      <bpmn:userTask id="Activity_AskForCustomersName" name="Ask for customer&#39;s name">
+        <bpmn:extensionElements>
+          <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_0fpf8mb" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0one6wi</bpmn:incoming>
+        <bpmn:outgoing>Flow_0xya1yz</bpmn:outgoing>
+      </bpmn:userTask>
+    </bpmn:subProcess>
+    <bpmn:sequenceFlow id="Flow_0kzubi6" sourceRef="StartEvent_CustomerArrived" targetRef="Activity_CheckForLibraryCard" />
+    <bpmn:sequenceFlow id="Flow_0zxugwv" sourceRef="Activity_CheckForLibraryCard" targetRef="Gateway_XOR_Split_Library_Card" />
+    <bpmn:sequenceFlow id="Flow_0q3t9of" name="forgot card" sourceRef="Gateway_XOR_Split_Library_Card" targetRef="Activity_SearchForCustomerByName">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=isRegistered and hasCard = false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1lw0xrg" name="not registered yet" sourceRef="Gateway_XOR_Split_Library_Card" targetRef="Activity_RegisterCustomer">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=isRegistered = false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1gigmex" sourceRef="Activity_ScanLibraryCard" targetRef="Gateway_XOR_Join_Library_Card" />
+    <bpmn:sequenceFlow id="Flow_17qt0q0" sourceRef="Activity_RegisterCustomer" targetRef="Gateway_XOR_Join_Library_Card" />
+    <bpmn:sequenceFlow id="Flow_1layvo0" sourceRef="Activity_SearchForCustomerByName" targetRef="Gateway_XOR_Join_Library_Card" />
+    <bpmn:sequenceFlow id="Flow_1i6mf56" name="presents card" sourceRef="Gateway_XOR_Split_Library_Card" targetRef="Activity_ScanLibraryCard">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=isRegistered and hasCard</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Activity_ScanLibraryCard" name="Retrieve customer data from database">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="getCustomerByID" />
+        <zeebe:taskHeaders>
+          <zeebe:header key="customerID" value="customerID" />
+        </zeebe:taskHeaders>
+        <zeebe:ioMapping>
+          <zeebe:output source="=firstName" target="firstName" />
+          <zeebe:output source="=lastName" target="lastName" />
+          <zeebe:output source="=gender" target="gender" />
+          <zeebe:output source="=email" target="email" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1i6mf56</bpmn:incoming>
+      <bpmn:outgoing>Flow_1gigmex</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:startEvent id="StartEvent_CustomerArrived" name="Customer arrived">
+      <bpmn:outgoing>Flow_0kzubi6</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0x1rqpa" messageRef="Message_21999cf" />
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="Gateway_XOR_Join_ScanBooks">
+      <bpmn:incoming>Flow_0il6ip7</bpmn:incoming>
+      <bpmn:incoming>Flow_1qr6d21</bpmn:incoming>
+      <bpmn:outgoing>Flow_1nsnbks</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0il6ip7" sourceRef="Gateway_XOR_Join_Library_Card" targetRef="Gateway_XOR_Join_ScanBooks" />
+    <bpmn:sequenceFlow id="Flow_1nsnbks" sourceRef="Gateway_XOR_Join_ScanBooks" targetRef="Activity_ScanBookToLend" />
+    <bpmn:exclusiveGateway id="Gateway_XOR_SplitScanBooks">
+      <bpmn:incoming>Flow_1mjrd5o</bpmn:incoming>
+      <bpmn:outgoing>Flow_1iepfa1</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1kp7vii</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1mjrd5o" sourceRef="Activity_ScanBookToLend" targetRef="Gateway_XOR_SplitScanBooks" />
+    <bpmn:sequenceFlow id="Flow_1iepfa1" name="no more books" sourceRef="Gateway_XOR_SplitScanBooks" targetRef="Gateway_XOR_Join_LimitReached">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=hasMore = false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0qn1icl" sourceRef="Gateway_XOR_Join_LimitReached" targetRef="Activity_UpdateLendingDatabase" />
+    <bpmn:sequenceFlow id="Flow_1kp7vii" name="has more books" sourceRef="Gateway_XOR_SplitScanBooks" targetRef="Activity_CheckLimitReached">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=hasMore</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1r1o0ts" sourceRef="Activity_CheckLimitReached" targetRef="Gateway_XOR_Split_LimitReached" />
+    <bpmn:exclusiveGateway id="Gateway_XOR_Split_LimitReached">
+      <bpmn:incoming>Flow_1r1o0ts</bpmn:incoming>
+      <bpmn:outgoing>Flow_1qr6d21</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0qeq23y</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1qr6d21" name="limit not reached" sourceRef="Gateway_XOR_Split_LimitReached" targetRef="Gateway_XOR_Join_ScanBooks">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=limitReached = false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0qeq23y" name="limit reached" sourceRef="Gateway_XOR_Split_LimitReached" targetRef="Event_LimitReachedNotification">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=limitReached</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1ifmn8t" sourceRef="Event_LimitReachedNotification" targetRef="Gateway_XOR_Join_LimitReached" />
+    <bpmn:scriptTask id="Activity_CheckLimitReached" name="Check book limit reached">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="checkBookLimit" />
+        <zeebe:taskHeaders>
+          <zeebe:header key="customerID" value="customerID" />
+          <zeebe:header key="bookList" value="bookList" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1kp7vii</bpmn:incoming>
+      <bpmn:outgoing>Flow_1r1o0ts</bpmn:outgoing>
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_UpdateLendingDatabase" name="Update lending database">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="updateLendingDatabase" />
+        <zeebe:taskHeaders>
+          <zeebe:header key="customerID" value="customerID" />
+          <zeebe:header key="bookList" value="bookList" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0qn1icl</bpmn:incoming>
+      <bpmn:outgoing>Flow_08msjk7</bpmn:outgoing>
+    </bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="Gateway_XOR_Join_LimitReached">
+      <bpmn:incoming>Flow_1iepfa1</bpmn:incoming>
+      <bpmn:incoming>Flow_1ifmn8t</bpmn:incoming>
+      <bpmn:outgoing>Flow_0qn1icl</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:intermediateThrowEvent id="Event_LimitReachedNotification" name="Send limit reached notification">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="sendLimitReached" />
+        <zeebe:taskHeaders>
+          <zeebe:header key="customerID" value="customerID" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0qeq23y</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ifmn8t</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0b6htwr" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:userTask id="Activity_ScanBookToLend" name="Scan book to lend">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:output source="=if bookList = null then bookID else bookList + &#34;;&#34; + bookID" target="bookList" />
+          <zeebe:output source="=hasMore" target="hasMore" />
+        </zeebe:ioMapping>
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_08f4u93" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1nsnbks</bpmn:incoming>
+      <bpmn:outgoing>Flow_1mjrd5o</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="EndEvent_BooksLended" name="Books lended">
+      <bpmn:incoming>Flow_08msjk7</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_08msjk7" sourceRef="Activity_UpdateLendingDatabase" targetRef="EndEvent_BooksLended" />
+  </bpmn:process>
+  <bpmn:message id="Message_21999cf" name="Message_CustomerArrived" />
+  <bpmn:error id="Error_1yoqbtx" name="Error_BookLimitReached" errorCode="BookLimitReached" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_CustomerArrives">
+      <bpmndi:BPMNShape id="Participant_1hcso5b_di" bpmnElement="Participant_Library" isHorizontal="true">
+        <dc:Bounds x="120" y="80" width="2320" height="690" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1liv507_di" bpmnElement="Gateway_XOR_Split_Library_Card" isMarkerVisible="true">
+        <dc:Bounds x="445" y="395" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="441" y="452" width="59" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0rzef40_di" bpmnElement="Activity_CheckForLibraryCard">
+        <dc:Bounds x="290" y="380" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1weckwh_di" bpmnElement="Gateway_XOR_Join_Library_Card" isMarkerVisible="true">
+        <dc:Bounds x="1385" y="395" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_03f8yyi_di" bpmnElement="Activity_RegisterCustomer" isExpanded="true">
+        <dc:Bounds x="570" y="510" width="750" height="200" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_10zo8xf_di" bpmnElement="StartEvent_RegisteringRequested">
+        <dc:Bounds x="610" y="592" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="601" y="635" width="56" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_06hidpv_di" bpmnElement="Activity_CreateLibraryCard">
+        <dc:Bounds x="860" y="570" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0tung6q_di" bpmnElement="Activity_RequestToSignCard">
+        <dc:Bounds x="1020" y="570" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1aw9z2s_di" bpmnElement="Activity_12xp1d9">
+        <dc:Bounds x="700" y="570" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_11pwey7_di" bpmnElement="EndEvent_CustomerRegistered">
+        <dc:Bounds x="1182" y="592" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1176" y="635" width="49" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0pvwsjs_di" bpmnElement="Flow_0pvwsjs">
+        <di:waypoint x="646" y="610" />
+        <di:waypoint x="700" y="610" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fpcrlk_di" bpmnElement="Flow_0fpcrlk">
+        <di:waypoint x="800" y="610" />
+        <di:waypoint x="860" y="610" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1eraeym_di" bpmnElement="Flow_1eraeym">
+        <di:waypoint x="960" y="610" />
+        <di:waypoint x="1020" y="610" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0cs8lky_di" bpmnElement="Flow_0cs8lky">
+        <di:waypoint x="1120" y="610" />
+        <di:waypoint x="1182" y="610" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_1hzusob_di" bpmnElement="Activity_SearchForCustomerByName" isExpanded="true">
+        <dc:Bounds x="650" y="130" width="590" height="200" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_09985gi_di" bpmnElement="StartEvent_ManualSearchRequested">
+        <dc:Bounds x="690" y="212" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="672" y="255" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1wjn0v6_di" bpmnElement="EndEvent_CustomerDataReceived">
+        <dc:Bounds x="1102" y="212" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1084" y="255" width="74" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12hw8cy_di" bpmnElement="Activity_SearchInDatabase">
+        <dc:Bounds x="940" y="190" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0eq4x7l_di" bpmnElement="Activity_AskForCustomersName">
+        <dc:Bounds x="780" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0one6wi_di" bpmnElement="Flow_0one6wi">
+        <di:waypoint x="726" y="230" />
+        <di:waypoint x="780" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0xya1yz_di" bpmnElement="Flow_0xya1yz">
+        <di:waypoint x="880" y="230" />
+        <di:waypoint x="940" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lc6wff_di" bpmnElement="Flow_0lc6wff">
+        <di:waypoint x="1040" y="230" />
+        <di:waypoint x="1102" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_0yvyf1f_di" bpmnElement="Activity_ScanLibraryCard">
+        <dc:Bounds x="895" y="380" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0spmhmx_di" bpmnElement="StartEvent_CustomerArrived">
+        <dc:Bounds x="202" y="402" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="177" y="378" width="85" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0de4zw4_di" bpmnElement="Gateway_XOR_Join_ScanBooks" isMarkerVisible="true">
+        <dc:Bounds x="1505" y="395" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1h5vzkc_di" bpmnElement="Gateway_XOR_SplitScanBooks" isMarkerVisible="true">
+        <dc:Bounds x="1765" y="395" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_10rb65a_di" bpmnElement="Gateway_XOR_Split_LimitReached" isMarkerVisible="true">
+        <dc:Bounds x="1765" y="625" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1wd0rix_di" bpmnElement="Activity_CheckLimitReached">
+        <dc:Bounds x="1740" y="500" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1rp4qkf_di" bpmnElement="Activity_UpdateLendingDatabase">
+        <dc:Bounds x="2070" y="380" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0eoturn_di" bpmnElement="Gateway_XOR_Join_LimitReached" isMarkerVisible="true">
+        <dc:Bounds x="1945" y="395" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0na3gi1_di" bpmnElement="Event_LimitReachedNotification">
+        <dc:Bounds x="1952" y="632" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1995" y="640" width="89" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_08du78o_di" bpmnElement="Activity_ScanBookToLend">
+        <dc:Bounds x="1600" y="380" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1w8k3eo_di" bpmnElement="EndEvent_BooksLended">
+        <dc:Bounds x="2252" y="402" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2237" y="445" width="66" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0kzubi6_di" bpmnElement="Flow_0kzubi6">
+        <di:waypoint x="238" y="420" />
+        <di:waypoint x="290" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zxugwv_di" bpmnElement="Flow_0zxugwv">
+        <di:waypoint x="390" y="420" />
+        <di:waypoint x="445" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0q3t9of_di" bpmnElement="Flow_0q3t9of">
+        <di:waypoint x="470" y="395" />
+        <di:waypoint x="470" y="230" />
+        <di:waypoint x="650" y="230" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="482" y="233" width="55" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lw0xrg_di" bpmnElement="Flow_1lw0xrg">
+        <di:waypoint x="470" y="445" />
+        <di:waypoint x="470" y="610" />
+        <di:waypoint x="570" y="610" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="457" y="613" width="86" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gigmex_di" bpmnElement="Flow_1gigmex">
+        <di:waypoint x="995" y="420" />
+        <di:waypoint x="1385" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17qt0q0_di" bpmnElement="Flow_17qt0q0">
+        <di:waypoint x="1320" y="610" />
+        <di:waypoint x="1410" y="610" />
+        <di:waypoint x="1410" y="445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1layvo0_di" bpmnElement="Flow_1layvo0">
+        <di:waypoint x="1240" y="230" />
+        <di:waypoint x="1410" y="230" />
+        <di:waypoint x="1410" y="395" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1i6mf56_di" bpmnElement="Flow_1i6mf56">
+        <di:waypoint x="495" y="420" />
+        <di:waypoint x="895" y="420" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="515" y="402" width="69" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0il6ip7_di" bpmnElement="Flow_0il6ip7">
+        <di:waypoint x="1435" y="420" />
+        <di:waypoint x="1505" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1nsnbks_di" bpmnElement="Flow_1nsnbks">
+        <di:waypoint x="1555" y="420" />
+        <di:waypoint x="1600" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1mjrd5o_di" bpmnElement="Flow_1mjrd5o">
+        <di:waypoint x="1700" y="420" />
+        <di:waypoint x="1765" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1iepfa1_di" bpmnElement="Flow_1iepfa1">
+        <di:waypoint x="1815" y="420" />
+        <di:waypoint x="1945" y="420" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1824" y="402" width="72" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qn1icl_di" bpmnElement="Flow_0qn1icl">
+        <di:waypoint x="1995" y="420" />
+        <di:waypoint x="2070" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kp7vii_di" bpmnElement="Flow_1kp7vii">
+        <di:waypoint x="1790" y="445" />
+        <di:waypoint x="1790" y="500" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1794" y="453" width="78" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1r1o0ts_di" bpmnElement="Flow_1r1o0ts">
+        <di:waypoint x="1790" y="580" />
+        <di:waypoint x="1790" y="625" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qr6d21_di" bpmnElement="Flow_1qr6d21">
+        <di:waypoint x="1765" y="650" />
+        <di:waypoint x="1530" y="650" />
+        <di:waypoint x="1530" y="445" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1680" y="632" width="79" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qeq23y_di" bpmnElement="Flow_0qeq23y">
+        <di:waypoint x="1815" y="650" />
+        <di:waypoint x="1952" y="650" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1829" y="632" width="61" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ifmn8t_di" bpmnElement="Flow_1ifmn8t">
+        <di:waypoint x="1970" y="632" />
+        <di:waypoint x="1970" y="445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08msjk7_di" bpmnElement="Flow_08msjk7">
+        <di:waypoint x="2170" y="420" />
+        <di:waypoint x="2252" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_1abl5my_di" bpmnElement="Participant_Customer" isHorizontal="true">
+        <dc:Bounds x="120" y="870" width="2320" height="60" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0ds1ljh_di" bpmnElement="Flow_0ds1ljh">
+        <di:waypoint x="220" y="870" />
+        <di:waypoint x="220" y="438" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_163jyq4_di" bpmnElement="Flow_163jyq4">
+        <di:waypoint x="1970" y="668" />
+        <di:waypoint x="1970" y="870" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

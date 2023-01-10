@@ -1,0 +1,22 @@
+{
+    "0": {
+        "c_data": {
+            "customerID": 0,
+            "firstName": "Jane",
+            "lastName": "Doe",
+            "gender": "other",
+            "email": "jane.doe@hu-berlin.de"
+        },
+        "booklist": []
+    },
+    "1": {
+        "c_data": {
+            "customerID": 1,
+            "firstName": "Etienne",
+            "lastName": "Couque",
+            "gender": "male",
+            "email": "etienne.couque@hu-berlin.de"
+        },
+        "booklist": []
+    }
+}

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="b82f70e" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.1.0" camunda:diagramRelationId="d5146154-e2b7-43c5-bb1e-7a0f4032945b">
+  <bpmn:collaboration id="Collaboration_111uf03">
+    <bpmn:participant id="Participant_0invb9w" name="Library" processRef="Process_07b18a71-523e-4cfc-a4a6-a86b92c4fad2" />
+    <bpmn:participant id="Participant_1q0h7m6" name="Costumer" />
+    <bpmn:messageFlow id="Flow_043wd3n" sourceRef="sendLetter" targetRef="Participant_1q0h7m6" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_07b18a71-523e-4cfc-a4a6-a86b92c4fad2" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Daily start event">
+      <bpmn:extensionElements />
+      <bpmn:outgoing>Flow_1l289uy</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0j3pbff">
+        <bpmn:timeCycle xsi:type="bpmn:tFormalExpression">R/P7D</bpmn:timeCycle>
+      </bpmn:timerEventDefinition>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1l289uy" sourceRef="StartEvent_1" targetRef="overdueCheck" />
+    <bpmn:sequenceFlow id="Flow_1c9px5h" sourceRef="overdueCheck" targetRef="sendLetter" />
+    <bpmn:sequenceFlow id="Flow_1x2o13m" sourceRef="sendLetter" targetRef="Event_0jafpu8" />
+    <bpmn:scriptTask id="overdueCheck" name="check for overdue books">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="checkOverdueBooks" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1l289uy</bpmn:incoming>
+      <bpmn:outgoing>Flow_1c9px5h</bpmn:outgoing>
+    </bpmn:scriptTask>
+    <bpmn:endEvent id="Event_0jafpu8" name="customers notified to return books">
+      <bpmn:incoming>Flow_1x2o13m</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:scriptTask id="sendLetter" name="notify customer with overdue books">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="sendOverdueMessage" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1c9px5h</bpmn:incoming>
+      <bpmn:outgoing>Flow_1x2o13m</bpmn:outgoing>
+    </bpmn:scriptTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_111uf03">
+      <bpmndi:BPMNShape id="Participant_0invb9w_di" bpmnElement="Participant_0invb9w" isHorizontal="true">
+        <dc:Bounds x="152" y="50" width="738" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0sbd15w_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="242" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="221" y="205" width="80" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0505k4x_di" bpmnElement="overdueCheck">
+        <dc:Bounds x="360" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0jafpu8_di" bpmnElement="Event_0jafpu8">
+        <dc:Bounds x="812" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="790" y="205" width="80" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_099unad_di" bpmnElement="sendLetter">
+        <dc:Bounds x="560" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1l289uy_di" bpmnElement="Flow_1l289uy">
+        <di:waypoint x="278" y="180" />
+        <di:waypoint x="360" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1c9px5h_di" bpmnElement="Flow_1c9px5h">
+        <di:waypoint x="460" y="180" />
+        <di:waypoint x="560" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1x2o13m_di" bpmnElement="Flow_1x2o13m">
+        <di:waypoint x="660" y="180" />
+        <di:waypoint x="812" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_1s5y9io_di" bpmnElement="Participant_1q0h7m6" isHorizontal="true">
+        <dc:Bounds x="152" y="330" width="738" height="60" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_043wd3n_di" bpmnElement="Flow_043wd3n">
+        <di:waypoint x="610" y="220" />
+        <di:waypoint x="610" y="330" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
