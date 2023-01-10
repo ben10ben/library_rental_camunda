@@ -9,7 +9,7 @@ nest_asyncio.apply()
 
 async def main():
 	channel = pyzeebe.create_camunda_cloud_channel(client_id="rBNAuQ9b9w3_wQYrNn.nHp6kC762XRGB", 
-													client_secret="C7QWOBgT_R5Hbs4RrA1vLnxJrmG6QxghzxlHG3S5FtdKEBRiGicUDmkvRsZj0p0V",
+													client_secret="",
 													cluster_id="c8192281-1489-423b-8f9e-bd82cfd54dbb",
 													region="dsm-1"
 
